@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Form from 'react-jsonschema-form';
 import { isEmpty, pickBy, assign, each, isArray, indexOf, every, some, omit, intersection, keys } from 'lodash';
+import { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 const originalSchema = {
   title: 'Объявления',
@@ -25,7 +27,6 @@ const originalSchema = {
 
 const originalUISchema = {
   'ui:order': ['property', 'mortgage', 'instalments'],
-  classNames: 'properties-form',
   property: {
     'ui:widget': 'radio',
     'ui:options': {
@@ -214,8 +215,13 @@ const initialState = processForm(
   originalFormData
 );
 
+const marks = {
+  1145800: '1 145 800',
+  362900000: '362 900 000'
+}
+
 export default class Home extends Component {
-  state = initialState;
+  state = {...initialState, minPrice: 1145800, maxPrice: 362900000};
 
   handleChange (data) {
     const schema = { ...this.state.schema };
@@ -228,8 +234,9 @@ export default class Home extends Component {
   }
 
   render() {
+    const { minPrice, maxPrice } = this.state;
     return (
-      <div>
+      <div className='properties-form'>
         <div>Главная</div>
         <Form
           schema={this.state.schema}
@@ -237,6 +244,21 @@ export default class Home extends Component {
           formData={this.state.formData}
           onChange={this.handleChange.bind(this)}
         />
+        <div className='col-xs-6'>
+          <div className='properties-form__price'>{minPrice.toLocaleString('ru-RU')} — {maxPrice.toLocaleString('ru-RU')}</div>
+          <Range 
+            min={1145800} 
+            max={362900000} 
+            marks={marks} 
+            defaultValue={[1145800, 362900000]} 
+            onAfterChange={(e) => {
+              this.setState({
+                minPrice: e[0],
+                maxPrice: e[1]
+              });
+            }}
+          />
+        </div>
       </div>
     );
   }
