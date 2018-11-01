@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import About from './pages/About/About';
 import Home from './pages/Home/Home';
+import './bootstrap.css';
 import './App.css';
 
 const MainMenu = () => (
@@ -21,7 +22,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-            <div>Ongrad</div>
+            <div>Недвижимость</div>
             <MainMenu />
           </header>
           <div>
