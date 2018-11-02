@@ -1,8 +1,20 @@
 import React, {Component} from 'react';
 import Form from 'react-jsonschema-form';
-import { isEmpty, pickBy, assign, each, isArray, indexOf, every, some, omit, intersection, keys } from 'lodash';
-import { Range } from 'rc-slider';
-import 'rc-slider/assets/index.css';
+import { 
+  isEmpty, 
+  pickBy, 
+  assign, 
+  each, 
+  isArray, 
+  indexOf, 
+  every, 
+  some, 
+  omit, 
+  intersection, 
+  keys 
+} from 'lodash';
+import PriceRange from '../../components/PriceRange/index';
+import Rooms from '../../components/Rooms';
 
 const originalSchema = {
   title: 'Объявления',
@@ -13,6 +25,22 @@ const originalSchema = {
       title: 'Что вы хотите?',
       enum: ['buy', 'rent', 'new'],
       enumNames: ['Продажа', 'Аренда', 'Новостройка']
+    },
+    rooms: {
+      type: 'array',
+      items: {
+        type: 'number',
+        enum: [0, 1, 2, 3, 4, 5, 6],
+        enumNames: ['Студия', '1-комнатная квартира', '2-комнатная квартира', '3-комнатная квартира', '4-комнатная квартира', '5-комнатная квартира', '6-комнатная квартира']
+      }
+    },
+    priceRange: {
+      type: 'object',
+      required: ['min', 'max'],
+      properties: {
+        min: { type: 'number' },
+        max: { type: 'number' }
+      }
     },
     mortgage: {
       type: 'boolean',
@@ -26,7 +54,15 @@ const originalSchema = {
 };
 
 const originalUISchema = {
-  'ui:order': ['property', 'mortgage', 'instalments'],
+  'ui:order': ['property', 'rooms', 'priceRange', 'mortgage', 'instalments'],
+  rooms: {
+    'ui:field': 'rooms',
+    classNames: 'col-xs-6'
+  },
+  priceRange: {
+    'ui:field': 'priceRange',
+    classNames: 'col-xs-6'
+  },
   property: {
     'ui:widget': 'radio',
     'ui:options': {
@@ -36,17 +72,24 @@ const originalUISchema = {
   },
   mortgage: {
     condition: 'property=buy||property=new',
-    classNames: 'col-xs-2'
+    classNames: 'col-xs-3 App-clearfix'
   },
   instalments: {
     condition: 'property=buy||property=new',
-    classNames: 'col-xs-2'
+    classNames: 'col-xs-3'
   },
 };
 
 const originalFormData = {
-  property: 'buy'
+  property: 'buy',
+  priceRange: {
+    min: 1145800,
+    max: 362900000
+  },
+  rooms: [1]
 };
+
+const fields = {priceRange: PriceRange, rooms: Rooms};
 
 /**
  * Calculate new state for form based on UI Schema field conditions and current form data
@@ -215,13 +258,8 @@ const initialState = processForm(
   originalFormData
 );
 
-const marks = {
-  1145800: '1 145 800',
-  362900000: '362 900 000'
-}
-
 export default class Home extends Component {
-  state = {...initialState, minPrice: 1145800, maxPrice: 362900000};
+  state = initialState;
 
   handleChange (data) {
     const schema = { ...this.state.schema };
@@ -233,32 +271,21 @@ export default class Home extends Component {
     this.setState(newState);
   }
 
+  onSubmit = ({formData}) => {
+    alert(JSON.stringify(formData));
+  }
+
   render() {
-    const { minPrice, maxPrice } = this.state;
     return (
       <div className='properties-form'>
-        <div>Главная</div>
         <Form
           schema={this.state.schema}
           uiSchema={this.state.uiSchema}
+          fields={fields}
           formData={this.state.formData}
           onChange={this.handleChange.bind(this)}
+          onSubmit={this.onSubmit}
         />
-        <div className='col-xs-6'>
-          <div className='properties-form__price'>{minPrice.toLocaleString('ru-RU')} — {maxPrice.toLocaleString('ru-RU')}</div>
-          <Range 
-            min={1145800} 
-            max={362900000} 
-            marks={marks} 
-            defaultValue={[1145800, 362900000]} 
-            onAfterChange={(e) => {
-              this.setState({
-                minPrice: e[0],
-                maxPrice: e[1]
-              });
-            }}
-          />
-        </div>
       </div>
     );
   }
