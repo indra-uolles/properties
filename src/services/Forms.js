@@ -11,9 +11,13 @@ import {
   intersection, 
   keys 
 } from 'lodash';
+import PriceRange from '../components/PriceRange/index';
+import Rooms from '../components/Rooms';
+
+export const fields = { priceRange: PriceRange, rooms: Rooms };
 
 export const originalSchema = {
-  title: 'Объявления',
+  title: '',
   type: 'object',
   properties: {
     property: {
@@ -47,6 +51,33 @@ export const originalSchema = {
       title: 'Рассрочка'
     }
   }
+};
+
+export const originalUISchema = {
+  'ui:order': ['property', 'rooms', 'priceRange', 'mortgage', 'instalments'],
+  rooms: {
+    'ui:field': 'rooms',
+    classNames: 'col-xs-6'
+  },
+  priceRange: {
+    'ui:field': 'priceRange',
+    classNames: 'col-xs-6'
+  },
+  property: {
+    'ui:widget': 'radio',
+    'ui:options': {
+      inline: true
+    },
+    classNames: 'col-xs-12 hidden-form-field'
+  },
+  mortgage: {
+    condition: 'property=buy||property=new',
+    classNames: 'col-xs-3 App-clearfix'
+  },
+  instalments: {
+    condition: 'property=buy||property=new',
+    classNames: 'col-xs-3'
+  },
 };
 
 /**

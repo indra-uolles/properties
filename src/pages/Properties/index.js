@@ -1,60 +1,23 @@
 import React, {Component} from 'react';
 import Form from 'react-jsonschema-form';
 import api from '../../services/Api';
-import { originalSchema, processForm } from '../../services/Forms';
-import PriceRange from '../../components/PriceRange/index';
-import Rooms from '../../components/Rooms';
-import './style.css';
+import { originalSchema, originalUISchema, processForm, fields } from '../../services/Forms';
 import ApartmentsListItem from '../../components/ApartmentsListItem';
+import './style.css';
 
-const originalUISchema = {
-  'ui:order': ['property', 'rooms', 'priceRange', 'mortgage', 'instalments'],
-  rooms: {
-    'ui:field': 'rooms',
-    classNames: 'col-xs-6'
-  },
-  priceRange: {
-    'ui:field': 'priceRange',
-    classNames: 'col-xs-6'
-  },
-  property: {
-    'ui:widget': 'radio',
-    'ui:options': {
-      inline: true
-    },
-    classNames: 'col-xs-12'
-  },
-  mortgage: {
-    condition: 'property=buy||property=new',
-    classNames: 'col-xs-3 App-clearfix'
-  },
-  instalments: {
-    condition: 'property=buy||property=new',
-    classNames: 'col-xs-3'
-  },
-};
-const originalFormData = {
-  property: 'buy',
-  priceRange: {
-    min: 1145800,
-    max: 362900000
-  },
-  rooms: [1]
-};
-const fields = {priceRange: PriceRange, rooms: Rooms};
-const initialState = processForm(
-  originalSchema, 
-  originalUISchema, 
-  originalSchema, 
-  originalUISchema, 
-  originalFormData
-);
+export default class Properties extends Component {
+  constructor(props) {
+    super(props);
 
-export default class Home extends Component {
-  state = {...initialState, properties: []};
+    this.state = {
+      ...props.initialState,
+      properties: []
+    }
+  }
 
   componentDidMount() {
-    const variables = { type: 'buy'};
+    const {intentType} = this.props;
+    const variables = { type: intentType};
     api.getProperties(variables).then((data) =>{
       this.setState({
         properties: data
