@@ -3,7 +3,13 @@
 }
 
 .properties-form {
+  padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.properties-form .properties-form__price-range {
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .properties-form legend {

@@ -61,7 +61,7 @@ export const originalUISchema = {
   },
   priceRange: {
     'ui:field': 'priceRange',
-    classNames: 'col-xs-6'
+    classNames: 'col-xs-6 properties-form__price-range'
   },
   property: {
     'ui:widget': 'radio',

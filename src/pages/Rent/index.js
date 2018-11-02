@@ -5,8 +5,8 @@ import { originalSchema, originalUISchema, processForm } from '../../services/Fo
 const originalFormData = {
   property: 'rent',
   priceRange: {
-    min: 1145800,
-    max: 362900000
+    min: 5000,
+    max: 90000
   },
   rooms: [1]
 };
