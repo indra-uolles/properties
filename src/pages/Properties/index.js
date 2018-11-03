@@ -68,9 +68,9 @@ export default class Properties extends Component {
           formData={this.state.formData}
           onChange={this.handleChange.bind(this)}
           onSubmit={this.onSubmit}
-          //children={this.renderSubmit()}
-          //ref={(form) => {this.state.form = form;}}
-        />
+        >
+          <button type='submit' className='btn btn-info properties-form__submit'>Подобрать</button>
+        </Form>
       </div>
         <div className='properties'>
           {properties.map((property) => (
