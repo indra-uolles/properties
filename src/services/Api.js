@@ -3,7 +3,7 @@ import { fakeGetProperties } from './FakeServer';
 const create = () => {
 
   const getProperties = async(variables) => {
-    return fakeGetProperties(variables.type);
+    return fakeGetProperties(variables);
   }
 
   return {

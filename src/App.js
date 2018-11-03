@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Home from './pages/Home/index';
 import Buy from './pages/Buy/index';
 import Rent from './pages/Rent/index';
 import New from './pages/New/index';
@@ -9,6 +10,9 @@ import './App.css';
 const MainMenu = () => (
   <div className='main-menu'>
     <Link to='/'>
+      <button>Главная</button>
+    </Link>
+    <Link to='/buy'>
       <button>Купить</button>
     </Link>
     <Link to='/rent'>
@@ -30,7 +34,8 @@ class App extends Component {
             <MainMenu />
           </header>
           <div>
-            <Route exact path='/' component={Buy} />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/buy' component={Buy} />
             <Route exact path='/rent' component={Rent} />
             <Route exact path='/new' component={New} />
           </div>

@@ -16,7 +16,7 @@
     "react-scripts": "2.1.0",
     "react-selectize": "^3.0.1",
     "react-transition-group": "^1.2.1",
-    "react-jsonschema-form": "https://github.com/indra-uolles/react-jsonschema-form.git"
+    "react-jsonschema-form": "^1.0.5"
   },
   "scripts": {
     "start": "react-scripts start",

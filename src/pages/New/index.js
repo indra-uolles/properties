@@ -5,10 +5,10 @@ import { originalSchema, originalUISchema, processForm } from '../../services/Fo
 const originalFormData = {
   property: 'new',
   priceRange: {
-    min: 1145800,
-    max: 362900000
+    min: 100000,
+    max: 10000000
   },
-  rooms: [1]
+  rooms: [1,2]
 };
 
 const initialState = processForm(

@@ -39,6 +39,10 @@ ol, ul {
   /* где нормалайзер? */
 }
 
+.font-weight-bold {
+  font-weight: 700;
+}
+
 .hidden-form-field {
   display: none;
 }

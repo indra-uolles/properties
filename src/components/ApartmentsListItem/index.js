@@ -11,7 +11,7 @@ export default class ApartmentsListItem extends React.Component {
   }
 
   render() {
-    const { area, rooms, price, address, material, floor } = this.props;
+    const { area, rooms, price, address, material, floor, mortgage, instalments } = this.props;
     return (
       <article className='apartments-list-item'>
         <div className='apartments-list-item__image-wrap'>
@@ -32,6 +32,12 @@ export default class ApartmentsListItem extends React.Component {
             <li className='apartments-list-item__details-option'>
               <span>Этаж: {floor}</span>
             </li>
+            {mortgage && <li className='apartments-list-item__details-option'>
+              <span className='font-weight-bold'>Ипотека</span>
+            </li>}
+            {instalments && <li className='apartments-list-item__details-option'>
+              <span className='font-weight-bold'>Рассрочка</span>
+            </li>}
           </ul>
         </div>
       </article>

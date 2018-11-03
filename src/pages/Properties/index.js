@@ -37,11 +37,18 @@ export default class Properties extends Component {
   }
 
   onSubmit = ({formData}) => {
-    alert(JSON.stringify(formData));
+    //пока так
+    const variables = {...formData, type: formData.property};
+    api.getProperties(variables).then((data) =>{
+      this.setState({
+        properties: data
+      });
+    });
+    //alert(JSON.stringify(formData));
   }
 
   submit = () => {
-    debugger;
+    //в npm не самый новый код, а форкнутую репу надо собрать
     this.state.form.submit();
   }
 
@@ -61,8 +68,8 @@ export default class Properties extends Component {
           formData={this.state.formData}
           onChange={this.handleChange.bind(this)}
           onSubmit={this.onSubmit}
-          children={this.renderSubmit()}
-          ref={(form) => {this.state.form = form;}}
+          //children={this.renderSubmit()}
+          //ref={(form) => {this.state.form = form;}}
         />
       </div>
         <div className='properties'>

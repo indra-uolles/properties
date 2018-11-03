@@ -75,13 +75,56 @@ function delayedPromise(ms, value) {
   });
 }
 
-// //number name author содержит
-// export const fakeFindPools = (filterStr) => {
-//   return delayedPromise(500, { 
-//     filtered: fakeDatabase.pools
-//   });
-// }
+const filterByPriceRange = function(priceRange) {
+  return function(item) {
+    return item.price >= priceRange.min && item.price <= priceRange.max;
+  };
+};
 
-export const fakeGetProperties = (type) => {
-  return delayedPromise(500, fakeDB[type]);
+const filterByRooms = function(rooms) {
+  return function(item) {
+    return rooms.includes(item.rooms);
+  };
+};
+
+const filterByMortgage = function() {
+  return function(item) {
+    return item.mortgage;
+  };
+};
+
+const filterByInstalments = function() {
+  return function(item) {
+    return item.instalments;
+  };
+};
+
+export const fakeGetProperties = (variables) => {
+  const { type } = variables;
+  const items = fakeDB[type];
+  const filters = [];
+  if (!!variables.priceRange) {
+    filters.push(filterByPriceRange(variables.priceRange));
+  }
+
+  if (!!variables.rooms && variables.rooms.length > 0) {
+    filters.push(filterByRooms(variables.rooms));
+  }
+
+  if (!!variables.mortgage) {
+    filters.push(filterByMortgage());
+  }
+
+  if (!!variables.instalments) {
+    filters.push(filterByInstalments());
+  }
+
+  const result = items.filter((item) => {
+    for (var k = 0; k < filters.length; ++k) {
+      if (!filters[k](item)) return false;
+    }
+    return true;
+  });
+
+  return delayedPromise(500, result);
 }
