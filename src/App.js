@@ -4,6 +4,7 @@ import Home from './pages/Home/index';
 import Buy from './pages/Buy/index';
 import Rent from './pages/Rent/index';
 import New from './pages/New/index';
+import './normalize.css';
 import './bootstrap.css';
 import './App.css';
 

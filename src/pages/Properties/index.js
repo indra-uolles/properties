@@ -44,16 +44,6 @@ export default class Properties extends Component {
         properties: data
       });
     });
-    //alert(JSON.stringify(formData));
-  }
-
-  submit = () => {
-    //в npm не самый новый код, а форкнутую репу надо собрать
-    this.state.form.submit();
-  }
-
-  renderSubmit = () => {
-    return <button type='button' class='btn btn-info properties-form__submit' onClick={this.submit}>Подобрать</button>;
   }
 
   render() {

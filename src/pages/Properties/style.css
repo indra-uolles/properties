@@ -3,6 +3,9 @@
 }
 
 .properties-form {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -12,8 +15,8 @@
 }
 
 .properties-form .properties-form__price-range {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 0;
+  padding-right: 15px;
 }
 
 .properties-form legend {
@@ -24,7 +27,7 @@
   border-bottom: 0;
 }
 
-@media only screen and (min-width: 640px) {
+@media (min-width: 640px) {
   .properties {
     padding: 16px 30px 30px;
     width: 100%;
@@ -33,12 +36,61 @@
   }
 }
 
-@media only screen and (max-width: 639px) {
+@media (max-width: 639px) {
   .properties {
     background: #fff;
     width: 100%;
     max-width: 1200px;
     padding: 0 15px;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 991px) {
+  .properties-form .properties-form__price-range {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .properties-form .mortgage, .properties-form .instalments {
+    float: left;
+    width: 16.66666667%;
+  }
+
+  .properties-form__submit {
+    width: 100%;
+  }
+
+  .properties-form .col-sm-12 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .properties-form .properties-form__price-range {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+@media (max-width: 639px) {
+  .properties-form .properties-form__price-range {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .properties-form {
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-bottom: 1px solid #d7d7d7;
+  }
+}
+
+@media (max-width: 575px) {
+  .properties-form .mortgage, .properties-form .instalments {
+    float: left;
+    width: 33%;
   }
 }

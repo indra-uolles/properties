@@ -57,26 +57,26 @@ export const originalUISchema = {
   'ui:order': ['property', 'rooms', 'priceRange', 'mortgage', 'instalments'],
   rooms: {
     'ui:field': 'rooms',
-    classNames: 'col-xs-6'
+    classNames: 'col-md-6 col-sm-12'
   },
   priceRange: {
     'ui:field': 'priceRange',
-    classNames: 'col-xs-6 properties-form__price-range'
+    classNames: 'col-md-6 col-sm-12 properties-form__price-range'
   },
   property: {
     'ui:widget': 'radio',
     'ui:options': {
       inline: true
     },
-    classNames: 'col-xs-12 hidden-form-field'
+    classNames: 'hidden-form-field'
   },
   mortgage: {
     condition: 'property=buy||property=new',
-    classNames: 'col-xs-3 App-clearfix'
+    classNames: 'col-md-2 mortgage App-clearfix'
   },
   instalments: {
     condition: 'property=buy||property=new',
-    classNames: 'col-xs-3'
+    classNames: 'col-md-2 instalments'
   },
 };
 
