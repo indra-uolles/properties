@@ -17,20 +17,22 @@ export default class PriceRange extends React.Component {
       [maxStart]: maxStart.toLocaleString('ru-RU')
     };
     return (
-      <div className='price-range'>
-        <div className='properties-form__price'>{min.toLocaleString('ru-RU')} — {max.toLocaleString('ru-RU')}</div>
-        <Range 
-          min={minStart} 
-          max={maxStart} 
-          defaultValue={[minStart, maxStart]} 
-          onAfterChange={(e) => {
-            this.setState({
-              min: e[0],
-              max: e[1]
-            }, () => this.props.onChange(this.state));
-          }}
-          marks={marks}
-        />
+      <div className='price-range-wrap'>
+        <div className='price-range'>
+          <div className='properties-form__price'>{min.toLocaleString('ru-RU')} — {max.toLocaleString('ru-RU')}</div>
+          <Range 
+            min={minStart} 
+            max={maxStart} 
+            defaultValue={[minStart, maxStart]} 
+            onAfterChange={(e) => {
+              this.setState({
+                min: e[0],
+                max: e[1]
+              }, () => this.props.onChange(this.state));
+            }}
+            marks={marks}
+          />
+        </div>      
       </div>
     );
   }
