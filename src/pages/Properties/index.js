@@ -11,7 +11,8 @@ export default class Properties extends Component {
 
     this.state = {
       ...props.initialState,
-      properties: []
+      properties: [],
+      form: {}
     }
   }
 
@@ -39,6 +40,15 @@ export default class Properties extends Component {
     alert(JSON.stringify(formData));
   }
 
+  submit = () => {
+    debugger;
+    this.state.form.submit();
+  }
+
+  renderSubmit = () => {
+    return <button type='button' class='btn btn-info properties-form__submit' onClick={this.submit}>Подобрать</button>;
+  }
+
   render() {
     const { properties } = this.state;
     return (
@@ -51,6 +61,8 @@ export default class Properties extends Component {
           formData={this.state.formData}
           onChange={this.handleChange.bind(this)}
           onSubmit={this.onSubmit}
+          children={this.renderSubmit()}
+          ref={(form) => {this.state.form = form;}}
         />
       </div>
         <div className='properties'>

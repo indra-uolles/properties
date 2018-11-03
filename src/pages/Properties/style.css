@@ -7,6 +7,10 @@
   padding-bottom: 20px;
 }
 
+.properties-form__submit {
+  width: 175px;
+}
+
 .properties-form .properties-form__price-range {
   padding-left: 50px;
   padding-right: 50px;
