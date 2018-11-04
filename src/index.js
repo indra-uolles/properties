@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import Promise from 'bluebird';
+
+Promise.config({cancellation: true});
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

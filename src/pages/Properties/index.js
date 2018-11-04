@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Form from 'react-jsonschema-form';
+import Promise from 'bluebird';
 import api from '../../services/Api';
 import { originalSchema, originalUISchema, fields } from '../../services/FormSchema';
 import { processForm } from '../../services/FormUtils';
@@ -16,14 +17,25 @@ export default class Properties extends Component {
     }
   }
 
+  fetchProperties = (variables) => {
+    this.getPropertiesPromise = Promise.resolve(api.getProperties(variables))
+      .catch(console.error.bind(console, 'Failed to load properties'))
+      .then((data) =>{
+        this.setState({
+          properties: data
+        });
+      });
+  }
+
   componentDidMount() {
     const { intentType } = this.props;
     const variables = { property: intentType };
-    api.getProperties(variables).then((data) =>{
-      this.setState({
-        properties: data
-      });
-    });
+
+    this.fetchProperties(variables);
+  }
+
+  componentWillUnmount() {
+    !!this.getPropertiesPromise && this.getPropertiesPromise.cancel();
   }
 
   handleChange (data) {
@@ -37,11 +49,7 @@ export default class Properties extends Component {
   }
 
   onSubmit = ({formData}) => {
-    api.getProperties({...formData}).then((data) =>{
-      this.setState({
-        properties: data
-      });
-    });
+    this.fetchProperties({...formData});
   }
 
   render() {

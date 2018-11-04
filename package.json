@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://indra-uolles.github.io/properties",
   "dependencies": {
+    "bluebird": "^3.5.2",
     "lodash": "^4.17.11",
     "rc-slider": "^8.6.3",
     "react": "^16.6.0",
@@ -12,11 +13,11 @@
     "react-dom": "^16.6.0",
     "react-dom-factories": "^1.0.2",
     "react-input-range": "^1.3.0",
+    "react-jsonschema-form": "^1.0.5",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.0",
     "react-selectize": "^3.0.1",
-    "react-transition-group": "^1.2.1",
-    "react-jsonschema-form": "^1.0.5"
+    "react-transition-group": "^1.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
