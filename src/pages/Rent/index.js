@@ -9,7 +9,7 @@ const originalFormData = {
     min: 5000,
     max: 90000
   },
-  rooms: [1]
+  rooms: [1,4]
 };
 
 const initialState = processForm(
