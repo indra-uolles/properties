@@ -1,28 +1,13 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Home from './pages/Home/index';
-import Buy from './pages/Buy/index';
-import Rent from './pages/Rent/index';
-import New from './pages/New/index';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Buy from './pages/Buy';
+import Rent from './pages/Rent';
+import New from './pages/New';
+import MainMenu from './components/MainMenu';
 import './bootstrap.css';
 import './App.css';
 
-const MainMenu = () => (
-  <div className='main-menu'>
-    <Link to='/'>
-      <button>Главная</button>
-    </Link>
-    <Link to='/buy'>
-      <button>Купить</button>
-    </Link>
-    <Link to='/rent'>
-      <button>Снять</button>
-    </Link>
-    <Link to='/new'>
-      <button>Новостройки</button>
-    </Link>
-  </div>
-)
 
 class App extends Component {
   render() {
@@ -30,7 +15,6 @@ class App extends Component {
       <Router>
         <div className='App'>
           <header className='App-header'>
-            <div>Недвижимость</div>
             <MainMenu />
           </header>
           <div>

@@ -1,14 +1,9 @@
 import { fakeGetProperties } from './FakeServer';
 
-const create = () => {
-
-  const getProperties = async(variables) => {
+class Api {
+  async getProperties(variables) {
     return fakeGetProperties(variables);
   }
+}
 
-  return {
-    getProperties
-  };
-};
-
-export default create();
+export default new Api();

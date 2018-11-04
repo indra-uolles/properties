@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Form from 'react-jsonschema-form';
 import api from '../../services/Api';
-import { originalSchema, originalUISchema, processForm, fields } from '../../services/Forms';
+import { originalSchema, originalUISchema, fields } from '../../services/FormSchema';
+import { processForm } from '../../services/FormUtils';
 import ApartmentsListItem from '../../components/ApartmentsListItem';
 import './style.css';
 
@@ -11,14 +12,13 @@ export default class Properties extends Component {
 
     this.state = {
       ...props.initialState,
-      properties: [],
-      form: {}
+      properties: []
     }
   }
 
   componentDidMount() {
-    const {intentType} = this.props;
-    const variables = { type: intentType};
+    const { intentType } = this.props;
+    const variables = { property: intentType };
     api.getProperties(variables).then((data) =>{
       this.setState({
         properties: data
@@ -37,9 +37,7 @@ export default class Properties extends Component {
   }
 
   onSubmit = ({formData}) => {
-    //пока так
-    const variables = {...formData, type: formData.property};
-    api.getProperties(variables).then((data) =>{
+    api.getProperties({...formData}).then((data) =>{
       this.setState({
         properties: data
       });
@@ -64,7 +62,7 @@ export default class Properties extends Component {
       </div>
         <div className='properties'>
           {properties.map((property) => (
-            <ApartmentsListItem {...property}/>
+            <ApartmentsListItem {...property} key={property.id}/>
           ))}
         </div>
       </React.Fragment>

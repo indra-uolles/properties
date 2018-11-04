@@ -100,8 +100,8 @@ const filterByInstalments = function() {
 };
 
 export const fakeGetProperties = (variables) => {
-  const { type } = variables;
-  const items = fakeDB[type];
+  const { property } = variables;
+  const items = fakeDB[property];
   const filters = [];
   if (!!variables.priceRange) {
     filters.push(filterByPriceRange(variables.priceRange));

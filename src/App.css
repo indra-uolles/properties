@@ -41,6 +41,29 @@ ol, ul {
 
 .main-menu {
   margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.main-menu__item {
+  display: inline-block;
+  margin-right: 1.5rem;
+}
+
+.main-menu__item a {
+  color: #000;
+  position: relative;
+}
+
+.main-menu__item a.active {
+  color: #fff;
+}
+
+.main-menu__item a:hover, .main-menu__item a:visited, .main-menu__item a.active {
+  text-decoration: none;
+}
+
+.main-menu__item a:hover {
+  color: #ddd;
 }
 
 .react-selectize.root-node {

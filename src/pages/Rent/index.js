@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Properties from '../Properties';
-import { originalSchema, originalUISchema, processForm } from '../../services/Forms';
+import { originalSchema, originalUISchema } from '../../services/FormSchema';
+import { processForm } from '../../services/FormUtils';
 
 const originalFormData = {
   property: 'rent',
